@@ -2,6 +2,7 @@ package com.example.demo.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
@@ -15,17 +16,20 @@ import javax.persistence.Id;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class Multiplication {
+public class User {
     @Id
     @GeneratedValue
-    @Column(name = "MULTIPLICATION_ID")
+    @Column(name = "USER_ID")
     private Long id;
 
-    private final int factorA;
-    private final int factorB;
+    private final String alias;
 
-    // Empty constructor for JSON/JPA
-    Multiplication() {
-        this(0, 0);
+    public User() {
+        alias = null;
+    }
+
+    public User(final long userId, @NonNull final String userAlias) {
+        this.id = userId;
+        this.alias = userAlias;
     }
 }

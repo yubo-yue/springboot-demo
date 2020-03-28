@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Multiplication;
+import com.example.demo.domain.MultiplicationResultAttempt;
+
+import java.util.List;
 
 public interface MultiplicationService {
     /**
@@ -11,4 +14,9 @@ public interface MultiplicationService {
      */
     Multiplication createRandomMultiplication();
 
+    MultiplicationResultAttempt checkAttempt(MultiplicationResultAttempt multiplicationResultAttempt);
+
+    List<MultiplicationResultAttempt> getStatsForUser(final String userAlias);
+
+    MultiplicationResultAttempt getResultById(final Long resultId);
 }
