@@ -5,6 +5,7 @@ import com.example.demo.domain.MultiplicationResultAttempt;
 import com.example.demo.domain.User;
 import com.example.demo.service.MultiplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +29,7 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
+@Slf4j
 @RunWith(SpringRunner.class)
 @WebMvcTest(MultiplicationResultAttemptController.class)
 public class MultiplicationResultAttemptControllerTest {
@@ -53,6 +55,7 @@ public class MultiplicationResultAttemptControllerTest {
         given(multiplicationService.checkAttempt(any(MultiplicationResultAttempt.class)))
                 .willReturn(attempt);
 
+        log.info(jsonResultAttempt.write(attempt).getJson());
         final MockHttpServletResponse response = mvc.perform(
                 post("/results")
                         .contentType(MediaType.APPLICATION_JSON)
